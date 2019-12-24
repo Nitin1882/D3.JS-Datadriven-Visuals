@@ -141,8 +141,8 @@ function updateToolTip(chosenXAxis, chosenYAxis, circlesGroup) {
     }
 
   
-  if (chosenYAxis ==='oxidation_reduction_potential_mv_top_sample') {
-    var yLabel = "oxidation_reduction_potential_mv_top_sample:"
+  if (chosenYAxis ==='oxidation_reduction_potential_mv_bottom_sample') {
+    var yLabel = "oxidation_reduction_potential_mv_bottom_sample:"
   }
   else if(chosenYAxis === 'oakwood_bod_top_sample_mg_l') {
     var yLabel = 'oakwood_bod_top_sample_mg_l:';
@@ -177,7 +177,7 @@ d3.csv('./assets/data/data.csv').then(function(nycData) {
     nycData.forEach(function(data){
         data.top_ammonium_mg_l = +data.top_ammonium_mg_l;
         data.oakwood_bod_top_sample_mg_l = +data.oakwood_bod_top_sample_mg_l;
-        data.oxidation_reduction_potential_mv_top_sample = +data.oxidation_reduction_potential_mv_top_sample;
+        data.oxidation_reduction_potential_mv_bottom_sample = +oxidation_reduction_potential_mv_bottom_sample;
         data.ctd_conductivity_temperature_depth_profiler_bottom_dissolved_oxygen_mg_l = +data.ctd_conductivity_temperature_depth_profiler_bottom_dissolved_oxygen_mg_l;
         data.bottom_salinity_psu = +data.bottom_salinity_psu;
         data.top_bottom_coliform_cells_100_ml = +data.top_bottom_coliform_cells_100_ml;
@@ -236,6 +236,7 @@ d3.csv('./assets/data/data.csv').then(function(nycData) {
     //x labels
     var xLabelsGroup = chartGroup.append('g')
       .attr('transform', `translate(${width / 2}, ${height + 10 + margin.top})`);
+      
 
     var top_bottom_coliform_cells_100_ml = xLabelsGroup.append('text')
       .classed('aText', true)
@@ -265,17 +266,17 @@ d3.csv('./assets/data/data.csv').then(function(nycData) {
     var yLabelsGroup = chartGroup.append('g')
       .attr('transform', `translate(${0 - margin.left/4}, ${height/2})`);
 
-    var healthcareLabel = yLabelsGroup.append('text')
+    var oxidation_reduction_potential_mv_bottom_sample = yLabelsGroup.append('text')
       .classed('aText', true)
       .classed('active', true)
       .attr('x', 0)
       .attr('y', 0 - 20)
       .attr('dy', '1em')
       .attr('transform', 'rotate(-90)')
-      .attr('value', 'oxidation_reduction_potential_mv_top_sample')
-      .text('oxidation_reduction_potential_mv_top_sample');
+      .attr('value', 'oxidation_reduction_potential_mv_bottom_sample')
+      .text('oxidation_reduction_potential_mv_bottom_sample');
     
-    var smokesLabel = yLabelsGroup.append('text')
+    var oakwood_bod_top_sample_mg_l = yLabelsGroup.append('text')
       .classed('aText', true)
       .classed('inactive', true)
       .attr('x', 0)
@@ -285,7 +286,7 @@ d3.csv('./assets/data/data.csv').then(function(nycData) {
       .attr('value', 'oakwood_bod_top_sample_mg_l')
       .text('oakwood_bod_top_sample_mg_l');
     
-    var obesityLabel = yLabelsGroup.append('text')
+    var top_ammonium_mg_l = yLabelsGroup.append('text')
       .classed('aText', true)
       .classed('inactive', true)
       .attr('x', 0)
@@ -367,17 +368,17 @@ d3.csv('./assets/data/data.csv').then(function(nycData) {
 
             //Change of the classes changes text
             if (chosenYAxis === 'oxidation_reduction_potential_mv_top_sample') {
-              oxidation_reduction_potential_mv_top_sample.classed('active', true).classed('inactive', false);
+              oxidation_reduction_potential_mv_bottom_sample.classed('active', true).classed('inactive', false);
               oakwood_bod_top_sample_mg_l.classed('active', false).classed('inactive', true);
               top_ammonium_mg_l.classed('active', false).classed('inactive', true);
             }
-            else if (chosenYAxis === 'smokes') {
-              oxidation_reduction_potential_mv_top_sample.classed('active', false).classed('inactive', true);
+            else if (chosenYAxis === 'oakwood_bod_top_sample_mg_l') {
+              oxidation_reduction_potential_mv_bottom_sample.classed('active', false).classed('inactive', true);
               oakwood_bod_top_sample_mg_l.classed('active', true).classed('inactive', false);
               top_ammonium_mg_l.classed('active', false).classed('inactive', true);
             }
             else {
-              oxidation_reduction_potential_mv_top_sample.classed('active', false).classed('inactive', true);
+              oxidation_reduction_potential_mv_bottom_sample.classed('active', false).classed('inactive', true);
               oakwood_bod_top_sample_mg_l.classed('active', false).classed('inactive', true);
               top_ammonium_mg_l.classed('active', true).classed('inactive', false);
             }
