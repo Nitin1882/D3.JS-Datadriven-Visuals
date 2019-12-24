@@ -29,7 +29,7 @@ let chartGroup = svg.append('g')
   .attr('transform', `translate(${margin.left}, ${margin.top})`);
 
 
-let chosenXAxis = 'sampling_location';
+let chosenXAxis = 'top_bottom_coliform_cells_100_ml';
 let chosenYAxis = 'top_nitrate_nitrite_mg_l';
 
 
@@ -42,6 +42,7 @@ function xScale(nycData, chosenXAxis) {
 
   return xLinearScale;
 }
+
 function xScaleBand(nycData, chosenXAxis) {
   //scales
   let xLinearScale = d3.scaleBand()
@@ -97,7 +98,7 @@ function renderCircles(circlesGroup, newXScale, chosenXAxis, newYScale, chosenYA
     return circlesGroup;
 }
 
-//updating STATE labels
+//updating  labels
 function renderText(textGroup, newXScale, chosenXAxis, newYScale, chosenYAxis) {
 
     textGroup.transition()
@@ -111,11 +112,11 @@ function renderText(textGroup, newXScale, chosenXAxis, newYScale, chosenYAxis) {
 function styleX(value, chosenXAxis) {
 
     
-    //poverty
+    
     if (chosenXAxis === 'top_bottom_coliform_cells_100_ml') {
         return `${value}`;
     }
-    //household income
+    
     else if (chosenXAxis === 'oxidation_reduction_potential_mv_bottom_sample') {
         return `${value}`;
     }
@@ -147,7 +148,7 @@ function updateToolTip(chosenXAxis, chosenYAxis, circlesGroup) {
   else if(chosenYAxis === 'oakwood_bod_top_sample_mg_l') {
     var yLabel = 'oakwood_bod_top_sample_mg_l:';
   }
-  //smoking
+  
   else{
     var yLabel = 'top_ammonium_mg_l:';
   }
@@ -238,7 +239,7 @@ d3.csv('./assets/data/data.csv').then(function(nycData) {
       .attr('transform', `translate(${width / 2}, ${height + 10 + margin.top})`);
       
 
-    var top_bottom_coliform_cells_100_ml = xLabelsGroup.append('text')
+    var top_bottom_coliform_cells_100_mlLabel = xLabelsGroup.append('text')
       .classed('aText', true)
       .classed('active', true)
       .attr('x', 0)
