@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <div class="row">
+      <div class="col-lg-12 col-md-12 mb-12">
+        <p>Google Map Page</p>
+        <br>
+        </div>
+    </div>
+
+    <div id="floating-panel">
+      <div class="main" style="width: 100%">
+        <input type="range" min="1910" max="2019" id="year" value="2019"> 
+        <span id="year-name">2019</span>
+      </div>
+      <span id="info-message">Loading...</span><br/>
+      <button onclick="toggleHeatmap()">Toggle Map</button>
+      <button onclick="changeRadius()">Toggle overlay</button> - 
+      <button onclick="changeGradient()">Change gradient</button>
+      <button onclick="changeOpacity()">Change opacity</button>
+    </div>
+
+    <div id="bottom-panel">
+      Metric:
+      <select name="metric">
+        <option value="top_bottom_coliform_cells_100_ml">top_bottom_coliform_cells_100_ml)</option>
+        <option value="top_nitrate_nitrite_mg_l">top_nitrate_nitrite_mg_l</option>
+        <option value="top_salinity_psu</option">top_salinity_psu</option>
+        <option value="top_dissolved_organic_carbon_mg_l">top_dissolved_organic_carbon_mg_l</option>
+        <option value="oxidation_reduction_potential_mv_bottom_sample">oxidation_reduction_potential_mv_bottom_sample</option>
+        <option value="winkler_method_bottom_dissolved_oxygen_mg_l">winkler_method_bottom_dissolved_oxygen_mg_l</option>
+      </select><br/>
+      <div class="legend"></div> <span class="max">Max: <span id="max-val"></span></span>
+      <br>
+      
+    </div>
+
+    <div id="map"></div>
+
+{% endblock %}
+
+{% block top_links_section %}
+
+  <link rel="stylesheet" href="/static/css/google_map_style.css">
+
+{% endblock %}
+
+{% block bottom_script_section %}
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="/static/js/papaparse.min.js"></script>
+    <script src="/static/js/google_map_logic.js"></script>
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1OngXEEew_MjM_wJyAj7Zzn9oC4TvNso&libraries=visualization&callback=initMap">
+    </script>
+{% endblock %}

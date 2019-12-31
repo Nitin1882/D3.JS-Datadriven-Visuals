@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <div class="row">
+      <div class="col-lg-12 col-md-12 mb-12">
+        <p>Data Page</p>
+        <br>
+        <table>
+        <TR>
+          <TH>sample date</TH>
+          <TH>sampling location</TH>
+          <TH>DESCRIPTION</TH>
+          <TH>top ammonium mg l</TH>
+          <TH>oakwood bod top sample mg l</TH>
+          <TH>oxidation reduction potential mv bottom sample</TH>
+          <TH>top bottom coliform cells 100 ml</TH>
+          <TH>bottom salinity psu</TH>
+          <TH>ctd conductivity temperature depth profiler bottom dissolved oxygen mg l</TH>
+          <TH>top nitrate nitrite mg l</TH>
+          <TH>top dissolved organic carbon mg l</TH>
+          <TH>top enterococci bacteria cells 100ml</TH>
+          <TH>top total suspended solid mg l</TH>
+          <TH>total phosphorus mg l</TH>
+          <TH>top ph</TH>
+          <TH>bottom ph</TH>
+          <TH>top fecal coliform bacteria cells 100ml</TH>
+          <TH>winkler method bottom dissolved oxygen mg l</TH>
+          <TH>oxidation reduction potential mv top sample</TH>
+          <TH>lat</TH>
+          <TH>long</TH>
+        </TR>
+
+        {% for d in data %}
+        <TR>
+          <TD>{{ d["sample_date"] }}</TD>
+          <TD>{{ d["sampling_location"] }}</TD>
+          <TD>{{ d["DESCRIPTION"] }}</TD>
+          <TD>{{ d["top_ammonium_mg_l"] }}</TD>
+          <TD>{{ d["oakwood_bod_top_sample_mg_l"] }}</TD>
+          <TD>{{ d["oxidation_reduction_potential_mv_bottom_sample"] }}</TD>
+          <TD>{{ d["top_bottom_coliform_cells_100_ml"] }}</TD>
+          <TD>{{ d["bottom_salinity_psu"] }}</TD>
+          <TD>{{ d["ctd_conductivity_temperature_depth_profiler_bottom_dissolved_oxygen_mg_l"] }}</TD>
+          <TD>{{ d["top_nitrate_nitrite_mg_l"] }}</TD>
+          <TD>{{ d["top_dissolved_organic_carbon_mg_l"] }}</TD>
+          <TD>{{ d["top_enterococci_bacteria_cells_100ml"] }}</TD>
+          <TD>{{ d["top_total_suspended_solid_mg_l"] }}</TD>
+          <TD>{{ d["total_phosphorus_mg_l"] }}</TD>
+          <TD>{{ d["top_ph"] }}</TD>
+          <TD>{{ d["bottom_ph"] }}</TD>
+          <TD>{{ d["top_fecal_coliform_bacteria_cells_100ml"] }}</TD>
+          <TD>{{ d["winkler_method_bottom_dissolved_oxygen_mg_l"] }}</TD>
+          <TD>{{ d["oxidation_reduction_potential_mv_top_sample"] }}</TD>
+          <TD>{{ d["lat"] }}</TD>
+          <TD>{{ d["long"] }}</TD>
+        </TR>
+        {% endfor %}          
+      </table>
+    </div>
+    </div>
+
+{% endblock %}
+

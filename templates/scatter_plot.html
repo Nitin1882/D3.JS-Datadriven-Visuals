@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <div class="row">
+      <div class="col-lg-12 col-md-12 mb-12">
+        <h2>Scatter Plot</h2>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12  col-md-9">
+        <div id="scatter">
+          <!-- We append our chart here. -->
+        </div>
+      </div>
+    </div>
+
+{% endblock %}
+
+{% block top_links_section %}
+  <link rel="stylesheet" href="/static/css/d3Style.css">
+  <link rel="stylesheet" href="/static/css/scatter_plot_style.css">
+{% endblock %}
+
+{% block bottom_script_section %}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.9.1/d3-tip.js"></script>
+  <script type="text/javascript" src="/static/js/scatter_plot.js"></script>
+{% endblock %}

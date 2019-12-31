@@ -1,0 +1,101 @@
+/* Always set the map height explicitly to define the size of the div
+ * element that contains the map. */
+ #map {
+    height: 100%;
+  }
+  /* Optional: Makes the sample page fill the window. */
+  html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto','sans-serif';
+  }
+  #floating-panel {
+    position: absolute;
+    top: 20px;
+    left: 50vw;
+    transform: translateX(-50%);
+    z-index: 5;
+    background-color: #fff;
+    padding: 10px 20px 10px;
+    border-radius: 10px;
+    text-align: center;
+    
+    line-height: 30px;
+    background-color: #fff;
+    border: 1px solid #999;
+  }
+  
+  #loader {
+    width: 150px;
+    /*height: 100px;*/
+    position: absolute;
+    z-index: 10;
+    left: 50vw;
+    top: 50vh;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 15px 15px 5px;
+    border-radius: 10px;
+    text-align: center;
+  
+    font-size: 0.9em;
+  }
+  
+  #loader img {
+    width: 100px;
+  }
+  
+  #bottom-panel {
+    position: absolute;
+    bottom: 20px;
+    left: 50vw;
+    transform: translateX(-50%);
+    z-index: 5;
+    background-color: #fff;
+    padding: 10px 20px 10px;
+    border-radius: 10px;
+    text-align: center;
+    
+    line-height: 30px;
+    background-color: #fff;
+    border: 1px solid #999;
+  }
+  
+  .credits {
+    font-size: 0.85em;
+  }
+  
+  input#year {
+    width: calc(100% - 100px);
+  }
+  
+  .legend {
+    background: linear-gradient(to right, #00FF00, yellow, red);
+    width: calc(100% - 100px);
+    height: 12px;
+    border-radius: 5px;
+    display: inline-block;
+  }
+  
+  .blue-gradient {
+    background: linear-gradient(to right,
+      rgb(0, 255, 255),
+      rgb(0, 255, 255),
+      rgb(0, 191, 255),
+      rgb(0, 127, 255),
+      rgb(0, 63, 255),
+      rgb(0, 0, 255),
+      rgb(0, 0, 223),
+      rgb(0, 0, 191),
+      rgb(0, 0, 159),
+      rgb(0, 0, 127),
+      rgb(63, 0, 91),
+      rgb(127, 0, 63),
+      rgb(191, 0, 31),
+      rgb(255, 0, 0));
+  }
+  
+  .max {
+    line-height: 15px;
+  }
