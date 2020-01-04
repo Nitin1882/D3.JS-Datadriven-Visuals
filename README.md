@@ -18,7 +18,7 @@ initiatives undertaken to control contamination.
 
 ### Technologies/Tools used: 
                
-####Languages
+#### Languages
 1.	Python
         Libraries:
                   a.	Pandas
@@ -29,10 +29,10 @@ initiatives undertaken to control contamination.
                   b.	Chart.js
                   c.	Zingchart.js
 
-####Database:
+#### Database:
 NoSQL: MongoDB (Cloud)
 
-####Mapping tool:
+#### Mapping tool:
 Mapbox
 
 ### Break up of Repo 
