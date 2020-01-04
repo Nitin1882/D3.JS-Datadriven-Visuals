@@ -52,7 +52,7 @@ Mapbox
 ### Break up of Repo 
 
 ### Pre-requisites:
-1. Install packages mentioned in Requirements.txt
+1. Install packages mentioned in requirements.txt
 2. Get an access token from Mapbox and add it into the Map code
 
 ### Instructions to run code:
