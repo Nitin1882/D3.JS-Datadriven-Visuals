@@ -3,6 +3,7 @@
  
 ### Purpose:
 The purpose of this project is to render data and visualizations relating to various elements determining quality of harbor water in New York, to users. The data includes findings of the DEP(NY). The output of this project is the culmination of following skills:
+
 •	Data Warehousing: Data Extraction, Transformation, and Loading
 
 •	Data Wrangling 
