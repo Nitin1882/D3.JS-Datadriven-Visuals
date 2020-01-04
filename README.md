@@ -51,7 +51,11 @@ Mapbox
 
 ### Break up of Repo 
 
+### Pre-requisites:
+1. Install packages mentioned in Requirements.txt
+2. Get an access token from Mapbox and add it into the Map code
+
 ### Instructions to run code:
-1. Clone the repository.
-2. Run the files. 
+1. Clone the repository
+2. Run the files in "Code" folder 
 
