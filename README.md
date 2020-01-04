@@ -57,5 +57,5 @@ Mapbox
 
 ### Instructions to run code:
 1. Clone the repository
-2. Run the files in "Code" folder 
+2. Run the files in "Code.zip" folder 
 
