@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <div class="row">
+      <div class="col-lg-12 col-md-12 mb-12">
+        <h2>Zing Plot</h2>
+      </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12 col-md-12 mb-12" style="height: 600px">
+            <div id="myChart">
+              <!-- We append our chart here. -->
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12 col-md-12 mb-12">
+            <P></P>
+        </div>
+    </div>
+  
+    <script>
+        ZC.LICENSE = ["569d52cefae586f634c54f86dc99e6a9", "b55b025e438fa8a98e32482b5f768ff5"];
+        var myConfig = {
+
+            type: "line",
+            title: {
+                text: 'pH level in Harbor Water',
+                'scale-y': {
+                    values: "0:9",
+                    format: "%v%",
+
+                },
+            },
+
+            "plotarea": {
+                "margin": "80 200 40 120",
+                "position": "float"
+            },
+            "legend": {
+                "margin-top": 40,
+                "layout": "float",
+                "width": 550
+            },
+            "tooltip": {
+                
+                "background-color": "#F44336",
+                "padding": "10%",
+                "border-color": "#B71C1C",
+                "border-width": 1,
+                "border-radius": 2,
+
+
+                "alpha": 0.9
+
+
+            },
+            csv: {
+                url: "/static/data/zing_data.csv",
+                'vertical-labels': true,
+                'smart-scales': false
+            }
+        };
+
+        zingchart.render({
+            id: 'myChart',
+            data: myConfig,
+            height: '100%',
+            width: '100%'
+        });
+    </script>
+{% endblock %}
+
+{% block top_links_section %}
+<script src="https://cdn.zingchart.com/zingchart.min.js"></script>
+<style>
+    html,
+    body,
+    #myChart {
+        height: 100%;
+        width: 100%;
+    }
+
+    zing-grid[loading] {
+        height: 450px;
+    }
+</style>
+
+{% endblock %}
+
+{% block bottom_script_section %}
+ 
+{% endblock %}

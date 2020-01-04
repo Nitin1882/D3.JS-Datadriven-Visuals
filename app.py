@@ -1,8 +1,8 @@
-from flask import Flask, render_template, redirect  #, url_for
+from flask import Flask, render_template, redirect, request  #, url_for
 from flask_pymongo import PyMongo
 from pymongo import MongoClient
 import json
-import pandas
+import pandas as pd
 from bson import json_util
 from bson.json_util import dumps
 
@@ -53,35 +53,32 @@ def show_data_page():
     return render_template("data.html", data=saved_data)
 
 
-@app.route("/line_map")
-def show_line_map_page():
-    
-    df4 = pandas.read_csv('C:\\Learn\\Project2\\submit\\merged_file.csv')
-    df5 = df4[["sample_date","top_ammonium_mg_l","oakwood_bod_top_sample_mg_l","oxidation_reduction_potential_mv_bottom_sample","top_bottom_coliform_cells_100_ml","bottom_salinity_psu","ctd_conductivity_temperature_depth_profiler_bottom_dissolved_oxygen_mg_l","top_nitrate_nitrite_mg_l","top_dissolved_organic_carbon_mg_l","oxidation_reduction_potential_mv_bottom_sample",
-          "top_enterococci_bacteria_cells_100ml","top_total_suspended_solid_mg_l","total_phosphorus_mg_l","top_ph","bottom_ph", "top_fecal_coliform_bacteria_cells_100ml","winkler_method_bottom_dissolved_oxygen_mg_l","oxidation_reduction_potential_mv_bottom_sample","oxidation_reduction_potential_mv_top_sample","lat","long","sampling_location","DESCRIPTION"]]
-    #print(df5.head())
-    #print(df5.dropna().head())
-    #print(df5.shape)
-    df5.sort_values(by = 'sample_date', inplace =True,)
-    df5.drop_duplicates(inplace=True)
-    #print(df5.shape)
-    df7 = df5[df5['sampling_location'] == 'H3'].loc[:,['sample_date', 'bottom_salinity_psu']].copy()
-    print(df7.head())
-    df8 = df5[df5['sampling_location'] == 'H3'].loc[:,['sample_date', 'winkler_method_bottom_dissolved_oxygen_mg_l']].copy()
-    print(df8.head())
+def get_line_plot_data( location_name, measurement_name ):
 
+    df = saved_data_df [ saved_data_df ['sampling_location'] == location_name].loc[:,['sample_date', measurement_name]].copy()
+    df.sort_values(by = 'sample_date', inplace =True,)
+    df.drop_duplicates(inplace=True)
+
+    sample_dates = pd.to_datetime( df['sample_date'], infer_datetime_format = True)
+    data_list = pd.to_numeric( df[measurement_name], errors='coerce')
+
+    return sample_dates, data_list
+
+
+def get_line_plot_img(location_name, measurement_name, img_label):
+
+    sample_dates, data_list = get_line_plot_data(location_name, measurement_name)
 
     # Generate plot 1
     fig = Figure()
     axis = fig.add_subplot(1, 1, 1)
-    axis.plot(df8.sample_date ,df8.winkler_method_bottom_dissolved_oxygen_mg_l)
-    axis.set_title("Sample data on bottom dissolved Oxygen")
+    axis.plot(sample_dates, data_list)
+    axis.set_title(img_label)
     axis.set_xlabel("Sample Date")
-    axis.set_ylabel("Bottom Dissolved Oxygen")
+    axis.set_ylabel(img_label)
+    fig.autofmt_xdate(rotation=45)
     axis.grid()
-    # axis.plot(range(5), range(5), "ro-")
-
-       
+    
     # Convert plot 1 to PNG image
     pngImage1 = io.BytesIO()
     FigureCanvas(fig).print_png(pngImage1)
@@ -89,52 +86,41 @@ def show_line_map_page():
     # Encode PNG image to base64 string
     pngImageB64String1 = "data:image/png;base64,"
     pngImageB64String1 += base64.b64encode(pngImage1.getvalue()).decode('utf8')
+    return pngImageB64String1
 
 
-    df4 = pandas.read_csv('C:\\Learn\\Project2\\submit\\merged_file.csv')
-    df5 = df4[["sample_date","top_ammonium_mg_l","oakwood_bod_top_sample_mg_l","oxidation_reduction_potential_mv_bottom_sample","top_bottom_coliform_cells_100_ml","bottom_salinity_psu","ctd_conductivity_temperature_depth_profiler_bottom_dissolved_oxygen_mg_l","top_nitrate_nitrite_mg_l","top_dissolved_organic_carbon_mg_l","oxidation_reduction_potential_mv_bottom_sample",
-          "top_enterococci_bacteria_cells_100ml","top_total_suspended_solid_mg_l","total_phosphorus_mg_l","top_ph","bottom_ph", "top_fecal_coliform_bacteria_cells_100ml","winkler_method_bottom_dissolved_oxygen_mg_l","oxidation_reduction_potential_mv_bottom_sample","oxidation_reduction_potential_mv_top_sample","lat","long","sampling_location","DESCRIPTION"]]
-    #print(df5.head())
-    #print(df5.dropna().head())
-    #print(df5.shape)
-    df5.sort_values(by = 'sample_date', inplace =True,)
-    df5.drop_duplicates(inplace=True)
-    #print(df5.shape)
-    df7 = df5[df5['sampling_location'] == 'H3'].loc[:,['sample_date', 'bottom_salinity_psu']].copy()
-    print(df7.head())
+@app.route("/line_plots")
+def show_line_map_page():
 
-    # Generate plot 2
-    fig = Figure()
-    axis = fig.add_subplot(1, 1, 1)
-    axis.plot(df7.sample_date ,df7.bottom_salinity_psu)
-    axis.set_title("Sample Data on Bottom Salinity Psu")
-    axis.set_xlabel("Sample Date")
-    axis.set_ylabel("Bottom Salinity Psu")
-    axis.grid()
-    axis.rotatation = 60
-    
-
-    # Convert plot 2 to PNG image
-    pngImage2 = io.BytesIO()
-    FigureCanvas(fig).print_png(pngImage2)
+    pngImageB64String1 = get_line_plot_img('H3', 'winkler_method_bottom_dissolved_oxygen_mg_l', "Bottom Dissolved Oxygen mg1")
+    pngImageB64String2 = get_line_plot_img('H3', 'top_fecal_coliform_bacteria_cells_100ml', "Top Fecal Coliform Bacteria 100 ml")
+    pngImageB64String3 = get_line_plot_img('H3', 'top_enterococci_bacteria_cells_100ml',"Top Enterococci Bacteria 100ml")
 
     
-    # Encode PNG image to base64 string
-    pngImageB64String2 = "data:image/png;base64,"
-    pngImageB64String2 += base64.b64encode(pngImage2.getvalue()).decode('utf8')
 
-    #pngImageB64String2 = pngImageB64String1
     
-    return render_template("line_map.html", image1= pngImageB64String1, image2= pngImageB64String2 )
+    
+    return render_template("line_plots.html", image1= pngImageB64String1, image2= pngImageB64String2, image3= pngImageB64String3 )
+
+@app.route("/zing_plot")    
+def show_zing_plot_page():
+    return render_template("zing_plot.html")
 
 
 @app.route("/scatter_plot")
 def show_scatter_plot_page():
     return render_template("scatter_plot.html")
 
+
 @app.route("/google_map")
 def show_google_map_page():
     return render_template("google_map.html")
+
+
+@app.route("/google_map1")
+def show_google_map1_page():
+    return render_template("google_map1.html")
+
 
 
 @app.route("/get_data")
@@ -145,6 +131,7 @@ def d3jsproject_harborwatersample():
 
 # Load data from DB when application starts
 saved_data = load_data()
+saved_data_df = pd.DataFrame(saved_data)
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=5000, debug=False)
+    app.run(host='0.0.0.0', port=5000, debug=True)
