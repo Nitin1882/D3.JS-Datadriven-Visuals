@@ -26,14 +26,22 @@ initiatives undertaken to control contamination.
                
 #### Languages
 1.	Python
+
         Libraries:
+        
                   a.	Pandas
+                  
                   b.	Flask
 2.	JavaScript
+
         Libraries:
+        
                   a.	D3.js
+                  
                   b.	Chart.js
+                  
                   c.	Zingchart.js
+                  
 
 #### Database:
 NoSQL: MongoDB (Cloud)
