@@ -1,5 +1,6 @@
 # Quality of Harbor Water in NY
 
+![alt text](https://github.com/Nitin1882/D3.JS-Datadriven-Visuals/blob/master/Images/NYC%20harbor.jpg)
  
 ### Purpose:
 The purpose of this project is to render data and visualizations relating to various elements determining quality of harbor water in New York, to users. The data includes findings of the DEP(NY). The output of this project is the culmination of following skills:
