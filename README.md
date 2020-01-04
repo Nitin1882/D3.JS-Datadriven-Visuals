@@ -22,7 +22,7 @@ initiatives undertaken to control contamination.
 
 ### Technologies/Tools used: 
 
-![alt text](https://github.com/Nitin1882/D3.JS-Datadriven-Visuals/blob/master/Images/tools.jpg)
+             ![alt text](https://github.com/Nitin1882/D3.JS-Datadriven-Visuals/blob/master/Images/tools.jpg)
                
 #### Languages
 1.	Python
